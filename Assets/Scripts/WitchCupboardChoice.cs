@@ -5,9 +5,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CupboardChoice : MonoBehaviour
+public class WitchCupboardChoice : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> cupboards;
+    [SerializeField] private Transform cupboardManager;
+    private List<Transform> cupboards;
     private int index;
     private WitchesBrew witchesBrew;
     private InputAction witchMovement;
@@ -17,6 +18,12 @@ public class CupboardChoice : MonoBehaviour
     {
         witchesBrew = new WitchesBrew();
         witchesBrew.Player.WitchMove.started += Move;
+        cupboards = new List<Transform>();
+        for (int i = 0; i < cupboardManager.childCount; i++)
+        {
+            cupboards.Add(cupboardManager.GetChild(i));
+        }
+
         index = 0;
     }
 
@@ -26,7 +33,7 @@ public class CupboardChoice : MonoBehaviour
         {
             index += (int)ctx.ReadValue<float>();
             var pos = transform;
-            var moveTo = new Vector2(cupboards[index].transform.position.x,pos.position.y);
+            var moveTo = new Vector2(cupboards[index].position.x,pos.position.y);
             pos.position = moveTo;
         }
     }
