@@ -211,7 +211,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7529112155375119479, guid: eb5d76f3cf521fc47b02c83ca9eaa851, type: 3}
   m_PrefabInstance: {fileID: 157889015509876602}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &191570440
+--- !u!114 &191570442
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -730,6 +730,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 406551133594827672, guid: eb5d76f3cf521fc47b02c83ca9eaa851, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660327569448648975, guid: eb5d76f3cf521fc47b02c83ca9eaa851, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3572081960193554833, guid: eb5d76f3cf521fc47b02c83ca9eaa851, type: 3}
       propertyPath: m_RootOrder
       value: 8

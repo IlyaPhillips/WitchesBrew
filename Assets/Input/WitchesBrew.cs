@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/WitchesBrew.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Input/WitchesBrew.inputactions'
 
 using System;
 using System.Collections;
@@ -44,7 +44,7 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""AdjustFire"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""0a090d4e-08f2-4158-9ecf-c0391a434c12"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
