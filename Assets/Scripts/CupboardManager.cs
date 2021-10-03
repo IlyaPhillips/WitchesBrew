@@ -15,6 +15,7 @@ public class CupboardManager : MonoBehaviour
     private int activeCupboard;
     private int cupboardTimer;
     private Transform icon;
+    private float speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,8 @@ public class CupboardManager : MonoBehaviour
             cupboards.Add(transform.GetChild(i));
         }
         activeCupboard = 0;
-        cupboardTimer = 5;
+        cupboardTimer = 10;
+        speed = 0.1f;
     }
 
     // Update is called once per frame
@@ -62,12 +64,17 @@ public class CupboardManager : MonoBehaviour
     IEnumerator CupboardActive()
     {
         var color = Color.yellow;
-         color = Color.Lerp(color, Color.red, 0.7f);
+         
         for (int i = 0; i < cupboardTimer; i++)
         {
-            icon.GetComponent<SpriteRenderer>().color = color * i;
-            yield return new WaitForSeconds(0.35f);
+            var orange = new Color(1.0f,0.549f,0);
+            color = Color.Lerp(color, orange, 0.05f*i);
+            icon.GetComponent<SpriteRenderer>().color = color;
+            yield return new WaitForSeconds(speed);
         }
+        icon.GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(speed);
+        
         CheckWitch();
     }
 }

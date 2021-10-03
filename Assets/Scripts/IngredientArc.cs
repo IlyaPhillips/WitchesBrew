@@ -10,7 +10,7 @@ public class IngredientArc : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cauldron = GameManager.Instance.getCauldron();
+        cauldron = GameManager.Instance.GETCauldron();
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = ArcVelocity(transform.position, cauldron.position, 1.5f);
         rb.angularVelocity = Random.Range(50f, 80f);

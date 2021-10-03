@@ -7,22 +7,58 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     [SerializeField] private Transform cauldron;
+    private float catDelay; //high easier
+    private float catSpeed; //low easier
+    private float cupboardSpeed; //high easier
+    private float stirSpeed; //low easier
+    private float tempSpeed; //low easier
 
     private void Awake()
     {
         Instance = this;
     }
-
-    // Start is called before the first frame update
     
-
-    // Update is called once per frame
-    public Transform getCauldron()
+    public Transform GETCauldron()
     {
         return cauldron;
+    }
+
+    public float GETCatDelay()
+    {
+        return catDelay;
+    }
+    
+    public float GETCatSpeed()
+    {
+        return catSpeed;
+    }
+    
+    public float GETCupboardSpeed()
+    {
+        return cupboardSpeed;
+    }
+    
+    public float GETStirSpeed()
+    {
+        return stirSpeed;
+    }
+    public float GETTempSpeed()
+    {
+        return tempSpeed;
     }
 }
 
 public enum GameState {
-    
+    Menu,
+    Pause,
+    Stage1,
+    Stage2,
+    Stage3,
+    Stage4,
+    Stage6,
+    Stage7,
+    Stage8,
+    Win,
+    Lose
+
 }
