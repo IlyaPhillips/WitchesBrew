@@ -9,9 +9,8 @@ public class CatSpawner : MonoBehaviour
     [SerializeField]private List<GameObject> shelves;
     [SerializeField] private bool spawn;
     private List<bool> shelfBool;
-
+    private float spawnTimer;
     
-
     void Start()
     {
         shelfBool = new List<bool>();
@@ -20,13 +19,15 @@ public class CatSpawner : MonoBehaviour
             shelfBool.Add(false);
         }
         spawn = false;
+        spawnTimer = GameManager.Instance.GETCatDelay();
     }
 
 
     private void Update()
     {
         
-        //if ((int)Time.time % 500 == 0) spawn = true;
+        
+        if (Random.value>spawnTimer) spawn = true;
         if (!spawn) return;
         var index = PickShelf();
         SpawnCat(index);

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     [SerializeField] private Transform cauldron;
-    private float catDelay; //high easier
+    private float catDelay; //low easier
     private float catSpeed; //low easier
     private float cupboardSpeed; //high easier
     private float stirSpeed; //low easier
@@ -17,11 +17,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        catDelay = 10;
-        catSpeed = 0.1f;
+        catDelay = 0.9995f;
+        catSpeed = 0.01f;
         cupboardSpeed = 0.2f;
         stirSpeed = 0.1f;
-        tempSpeed = 5f;
+        tempSpeed = 0.1f;
         lives = 3;
     }
     
@@ -67,9 +67,9 @@ public enum GameState {
     Stage2,
     Stage3,
     Stage4,
+    Stage5,
     Stage6,
     Stage7,
-    Stage8,
     Win,
     Lose
 

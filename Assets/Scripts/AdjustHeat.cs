@@ -21,7 +21,11 @@ public class AdjustHeat : MonoBehaviour
         witchesBrew.Player.AdjustFire.canceled += Move;
         temperature = 0.5f;
         adjust = 0;
-        tempDelta = 0.2f;
+    }
+
+    private void Start()
+    {
+        tempDelta = GameManager.Instance.GETTempSpeed();
     }
 
     private void Move(InputAction.CallbackContext ctx)

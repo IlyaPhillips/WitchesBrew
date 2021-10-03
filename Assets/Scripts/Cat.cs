@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
-    [SerializeField]private float speed;
+    private float speed;
 
     private Vector3 start;
     // Start is called before the first frame update
     void Start()
     {
         start = transform.position;
+        speed = GameManager.Instance.GETCatSpeed();
     }
 
     // Update is called once per frame
