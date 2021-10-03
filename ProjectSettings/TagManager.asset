@@ -38,6 +38,39 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2870538353
+    locked: 0
+  - name: Shelves
+    uniqueID: 650750211
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Cupboard
+    uniqueID: 2574774771
+    locked: 0
+  - name: Ingredients
+    uniqueID: 2329057121
+    locked: 0
+  - name: Witch
+    uniqueID: 1399306771
+    locked: 0
+  - name: Cat
+    uniqueID: 1632941393
+    locked: 0
+  - name: Counter
+    uniqueID: 2183387137
+    locked: 0
+  - name: Cauldron
+    uniqueID: 4199027887
+    locked: 0
+  - name: TempDial
+    uniqueID: 1411367615
+    locked: 0
+  - name: Fire
+    uniqueID: 984234347
+    locked: 0
+  - name: Magic
+    uniqueID: 1576201017
     locked: 0

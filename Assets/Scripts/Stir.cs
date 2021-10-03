@@ -56,5 +56,10 @@ public class Stir : MonoBehaviour
         }
 
         transform.eulerAngles = new Vector3(0,0,angle);
+        if (angle > 33 || angle < -33)
+        {
+            GameManager.Instance.LoseLife();
+            angle = 0;
+        }
     }
 }

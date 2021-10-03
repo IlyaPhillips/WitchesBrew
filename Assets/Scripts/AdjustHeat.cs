@@ -12,22 +12,21 @@ public class AdjustHeat : MonoBehaviour
     private float tempDelta;
     private WitchesBrew witchesBrew;
     private InputAction adjustHeat;
-    private Transform pivot;
 
     // Update is called once per frame
     private void Awake()
     {
         witchesBrew = new WitchesBrew();
         witchesBrew.Player.AdjustFire.performed += Move;
+        witchesBrew.Player.AdjustFire.canceled += Move;
         temperature = 0.5f;
-        pivot = transform.parent;
         adjust = 0;
-        tempDelta = 5f;
+        tempDelta = 0.2f;
     }
 
     private void Move(InputAction.CallbackContext ctx)
     {
-        adjust = -ctx.ReadValue<float>() * 10f;
+        adjust = -ctx.ReadValue<float>() * tempDelta *2;
     }
 
     private void OnEnable()
@@ -44,8 +43,14 @@ public class AdjustHeat : MonoBehaviour
 
     private void Update()
     {
-        temperature = transform.eulerAngles.z;
-        tempDelta *= Mathf.Sign(temperature);
-        transform.RotateAround(pivot.position,Vector3.forward, (adjust+tempDelta)*Time.deltaTime);
+        var sign= Mathf.Sign(temperature);
+        temperature += (sign*tempDelta) + adjust;
+        var change = new Vector3(0, 0, temperature);
+        transform.eulerAngles = change;
+        if (temperature > 85 || temperature < -85)
+        {
+            temperature -= temperature / 3f;
+            GameManager.Instance.LoseLife();
+        }
     }
 }

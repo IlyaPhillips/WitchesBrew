@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private float cupboardSpeed; //high easier
     private float stirSpeed; //low easier
     private float tempSpeed; //low easier
+    private int lives;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
         cupboardSpeed = 0.2f;
         stirSpeed = 0.1f;
         tempSpeed = 5f;
+        lives = 3;
     }
     
     public Transform GETCauldron()
@@ -50,6 +52,11 @@ public class GameManager : MonoBehaviour
     public float GETTempSpeed()
     {
         return tempSpeed;
+    }
+
+    public void LoseLife()
+    {
+        lives--;
     }
 }
 

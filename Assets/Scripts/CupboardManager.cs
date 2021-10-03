@@ -55,7 +55,7 @@ public class CupboardManager : MonoBehaviour
         }
         else
         {
-            print("Wrong Cupboard");
+            GameManager.Instance.LoseLife();
         }
         icon.GetComponent<SpriteRenderer>().color = Color.white;
         activatingCupboard = true;

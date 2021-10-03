@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8883052516591424167}
   - component: {fileID: 1148463579725064320}
   - component: {fileID: 7094316446329750343}
+  - component: {fileID: 6294754366164316507}
   m_Layer: 8
   m_Name: Wishbone
   m_TagString: Untagged
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0afe4571791ac45870dd151df09c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shelf: 0
 --- !u!50 &1148463579725064320
 Rigidbody2D:
   serializedVersion: 4
@@ -103,8 +105,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1965910175
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 2905033895796135449, guid: aba9b86b42c8fb1458cde7268d67b860, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -117,3 +119,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &6294754366164316507
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6360134937458820726}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5972973
