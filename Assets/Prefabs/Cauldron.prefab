@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 573189499103009020}
   - component: {fileID: 573189499103009021}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cauldron Lip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 573189499868319805}
   - component: {fileID: 573189499868319806}
   - component: {fileID: 729851193}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stirring Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 573189500802834184}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stirring Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 573189500886625115}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cauldron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5557259082477045598}
   - component: {fileID: 8089080199178023614}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cauldron Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

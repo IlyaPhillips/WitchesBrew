@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4975347465891756926}
   - component: {fileID: 9159280852805029286}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightEar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8233102058945857992}
   - component: {fileID: 7854690627258854666}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftEar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4914279235436423673}
   - component: {fileID: 5700726309023432875}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,8 @@ GameObject:
   - component: {fileID: 4703323425218195586}
   - component: {fileID: 1099016506}
   - component: {fileID: 2539525165726754752}
-  m_Layer: 0
+  - component: {fileID: -763049402223327975}
+  m_Layer: 6
   m_Name: Black Cat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,6 +322,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
+--- !u!50 &-763049402223327975
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6934656627180413357}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6
 --- !u!1 &7032056777828294455
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2846294476463212204}
   - component: {fileID: 3273121118602438701}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CatBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2815763291068574916}
   - component: {fileID: 6333934678851164013}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

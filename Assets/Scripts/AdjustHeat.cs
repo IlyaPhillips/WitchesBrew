@@ -28,7 +28,6 @@ public class AdjustHeat : MonoBehaviour
     private void Move(InputAction.CallbackContext ctx)
     {
         adjust = -ctx.ReadValue<float>() * 10f;
-        //print(adjust);
     }
 
     private void OnEnable()
