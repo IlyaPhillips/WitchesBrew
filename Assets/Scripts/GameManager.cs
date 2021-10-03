@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        catDelay = 10;
+        catSpeed = 0.1f;
+        cupboardSpeed = 0.2f;
+        stirSpeed = 0.1f;
+        tempSpeed = 5f;
     }
     
     public Transform GETCauldron()

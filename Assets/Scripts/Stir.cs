@@ -8,21 +8,28 @@ public class Stir : MonoBehaviour
 {
     private WitchesBrew witchesBrew;
     private InputAction stir;
-    private Transform pivot;
+    //private Transform pivot;
     private float angle;
+    private float deltaAngle;
+    private bool changeStir;
 
     private void Awake()
     {
         witchesBrew = new WitchesBrew();
         witchesBrew.Player.Stir.performed += StirPot;
-        
-        pivot = transform.parent;
+        //pivot = transform.parent;
         angle = 0;
+        changeStir = false;
+    }
+
+    private void Start()
+    {
+        deltaAngle = GameManager.Instance.GETStirSpeed();
     }
 
     private void StirPot(InputAction.CallbackContext obj)
     {
-        angle += 10;
+        changeStir = !changeStir;
     }
 
     private void OnEnable()
@@ -39,7 +46,15 @@ public class Stir : MonoBehaviour
 
     private void Update()
     {
-        angle -= 0.05f;
-        transform.RotateAround(pivot.position,Vector3.back, angle* Time.deltaTime);
+        if (changeStir)
+        {
+            angle -= deltaAngle;
+        }
+        else
+        {
+            angle += deltaAngle;
+        }
+
+        transform.eulerAngles = new Vector3(0,0,angle);
     }
 }
