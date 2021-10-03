@@ -50,7 +50,8 @@ public class CupboardManager : MonoBehaviour
         if (Math.Abs(witch.position.x - cupboards[activeCupboard].position.x) < 0.2f)
         {
             var cupboardIngredient = cupboards[activeCupboard].GetChild(0).gameObject;
-            print("Right Cupboard");
+            cupboards[activeCupboard].GetComponent<SpawnIngredient>().OpenCupboard();
+            //print("Right Cupboard");
         }
         else
         {
