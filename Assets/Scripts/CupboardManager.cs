@@ -41,7 +41,6 @@ public class CupboardManager : MonoBehaviour
     {
         activeCupboard = Random.Range(0, cupboards.Count);
         icon = cupboards[activeCupboard].GetChild(0);
-        print(icon.name);
         StartCoroutine(CupboardActive());
     }
 
@@ -51,7 +50,6 @@ public class CupboardManager : MonoBehaviour
         {
             var cupboardIngredient = cupboards[activeCupboard].GetChild(0).gameObject;
             cupboards[activeCupboard].GetComponent<SpawnIngredient>().OpenCupboard();
-            //print("Right Cupboard");
         }
         else
         {

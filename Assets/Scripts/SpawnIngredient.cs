@@ -24,7 +24,7 @@ public class SpawnIngredient : MonoBehaviour
 
     IEnumerator Spawn()
     {
-        print("cupboard spawn");
+        Instantiate(ingredient, transform);
         yield return new WaitForSeconds(0.5f);
         sr.sprite = closed;
     }

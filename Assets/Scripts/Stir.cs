@@ -39,7 +39,7 @@ public class Stir : MonoBehaviour
 
     private void Update()
     {
-        angle -= 0.01f;
-        transform.RotateAround(pivot.position,Vector3.back, angle*Time.deltaTime);
+        angle -= 0.05f;
+        transform.RotateAround(pivot.position,Vector3.back, angle* Time.deltaTime);
     }
 }
