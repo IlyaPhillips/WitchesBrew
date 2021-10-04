@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8e08459c294362d4aae383cf376161f9
+guid: 5fd405e109c49ce47a417c5bde92373d
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -91,7 +91,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Shelves
+  - name: shelf
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -100,9 +100,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 7198
-      height: 441
-    spriteID: bafdcb6f17adb0f42b63101c12ca7bd2
+      width: 9750
+      height: 439
+    spriteID: 7c12b0f08ec0c4f46883549e75e7a22a
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -112,7 +112,51 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 2, y: -766}
+    uvTransform: {x: -156, y: -776}
+  - name: bolt 2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 451
+      width: 123
+      height: 1259
+    spriteID: ebd412c316d0e0e4d82e8c545001dd78
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -6684, y: 51}
+  - name: bolt
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 135
+      y: 451
+      width: 123
+      height: 1259
+    spriteID: 7b9a4536996b5a5448863154eda5b4bf
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -3041, y: 51}
   platformSettings:
   - name: DefaultTexturePlatform
     overridden: 0
@@ -163,33 +207,47 @@ ScriptedImporter:
   documentAlignment: 7
   importHiddenLayers: 0
   importedTextureWidth: 2048
-  importedTextureHeight: 128
-  documentSize: {x: 7200, y: 2000}
+  importedTextureHeight: 256
+  documentSize: {x: 10000, y: 2000}
   paperDollMode: 0
   keepDupilcateSpriteName: 0
   spriteCategoryList:
     categories: []
-  textureActualWidth: 8192
-  textureActualHeight: 512
+  textureActualWidth: 16384
+  textureActualHeight: 2048
   spritePackingTag: 
   resliceFromLayer: 0
   characterMode: 1
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Shelves
-    spriteName: Shelves
+  - name: shelf
+    spriteName: shelf
     isGroup: 0
     parentIndex: -1
-    spriteID: bafdcb6f17adb0f42b63101c12ca7bd2
-    layerID: 55
+    spriteID: 7c12b0f08ec0c4f46883549e75e7a22a
+    layerID: 87
     mosaicPosition: {x: 4, y: 4}
+  - name: bolt 2
+    spriteName: bolt 2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: ebd412c316d0e0e4d82e8c545001dd78
+    layerID: 94
+    mosaicPosition: {x: 4, y: 451}
+  - name: bolt
+    spriteName: bolt
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 7b9a4536996b5a5448863154eda5b4bf
+    layerID: 76
+    mosaicPosition: {x: 135, y: 451}
   characterData:
     bones: []
     parts: []
     dimension: {x: 0, y: 0}
     characterGroups: []
   generateGOHierarchy: 0
-  textureAssetName: Shelf Texture
-  prefabAssetName: Shelf Prefab
-  spriteLibAssetName: Shelf Sprite Lib
+  textureAssetName: Shelf (1) Texture
+  prefabAssetName: Shelf (1) Prefab
+  spriteLibAssetName: Shelf (1) Sprite Lib
   secondarySpriteTextures: []
