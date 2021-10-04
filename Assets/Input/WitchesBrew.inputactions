@@ -36,6 +36,14 @@
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "DeflectClick",
+                    "type": "Button",
+                    "id": "1218ab1e-8986-4a4c-baee-e91dd587b09c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -126,6 +134,17 @@
                     "action": "AdjustFire",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "b8539158-8829-4b8d-a21c-aff77d64936f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DeflectClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

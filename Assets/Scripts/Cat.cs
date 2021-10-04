@@ -17,7 +17,7 @@ public class Cat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right*speed);
+        transform.Translate(Vector3.right*speed*Time.deltaTime);
         if (Vector3.Distance(start, transform.position) > 24) Destroy(gameObject);
     }
 }

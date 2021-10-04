@@ -49,6 +49,14 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""DeflectClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""1218ab1e-8986-4a4c-baee-e91dd587b09c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -139,6 +147,17 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
                     ""action"": ""AdjustFire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8539158-8829-4b8d-a21c-aff77d64936f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeflectClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -718,6 +737,7 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
         m_Player_WitchMove = m_Player.FindAction("WitchMove", throwIfNotFound: true);
         m_Player_Stir = m_Player.FindAction("Stir", throwIfNotFound: true);
         m_Player_AdjustFire = m_Player.FindAction("AdjustFire", throwIfNotFound: true);
+        m_Player_DeflectClick = m_Player.FindAction("DeflectClick", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -783,6 +803,7 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_WitchMove;
     private readonly InputAction m_Player_Stir;
     private readonly InputAction m_Player_AdjustFire;
+    private readonly InputAction m_Player_DeflectClick;
     public struct PlayerActions
     {
         private @WitchesBrew m_Wrapper;
@@ -791,6 +812,7 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
         public InputAction @WitchMove => m_Wrapper.m_Player_WitchMove;
         public InputAction @Stir => m_Wrapper.m_Player_Stir;
         public InputAction @AdjustFire => m_Wrapper.m_Player_AdjustFire;
+        public InputAction @DeflectClick => m_Wrapper.m_Player_DeflectClick;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -812,6 +834,9 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
                 @AdjustFire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAdjustFire;
                 @AdjustFire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAdjustFire;
                 @AdjustFire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAdjustFire;
+                @DeflectClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDeflectClick;
+                @DeflectClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDeflectClick;
+                @DeflectClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDeflectClick;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -828,6 +853,9 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
                 @AdjustFire.started += instance.OnAdjustFire;
                 @AdjustFire.performed += instance.OnAdjustFire;
                 @AdjustFire.canceled += instance.OnAdjustFire;
+                @DeflectClick.started += instance.OnDeflectClick;
+                @DeflectClick.performed += instance.OnDeflectClick;
+                @DeflectClick.canceled += instance.OnDeflectClick;
             }
         }
     }
@@ -988,6 +1016,7 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
         void OnWitchMove(InputAction.CallbackContext context);
         void OnStir(InputAction.CallbackContext context);
         void OnAdjustFire(InputAction.CallbackContext context);
+        void OnDeflectClick(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

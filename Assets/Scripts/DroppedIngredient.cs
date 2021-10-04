@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(IngredientArc))]
 public class DroppedIngredient : MonoBehaviour
 {
     private Vector3 startPos;

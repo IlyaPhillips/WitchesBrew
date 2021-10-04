@@ -48,11 +48,11 @@ public class Stir : MonoBehaviour
     {
         if (changeStir)
         {
-            angle -= deltaAngle;
+            angle -= deltaAngle*Time.deltaTime;
         }
         else
         {
-            angle += deltaAngle;
+            angle += deltaAngle*Time.deltaTime;
         }
 
         transform.eulerAngles = new Vector3(0,0,angle);

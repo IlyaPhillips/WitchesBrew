@@ -48,7 +48,7 @@ public class AdjustHeat : MonoBehaviour
     private void Update()
     {
         var sign= Mathf.Sign(temperature);
-        temperature += (sign*tempDelta) + adjust;
+        temperature += (((sign*tempDelta) + adjust)*Time.deltaTime);
         var change = new Vector3(0, 0, temperature);
         transform.eulerAngles = change;
         if (temperature > 85 || temperature < -85)

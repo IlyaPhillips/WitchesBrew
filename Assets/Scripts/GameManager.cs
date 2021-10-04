@@ -18,10 +18,10 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         catDelay = 0.9995f;
-        catSpeed = 0.01f;
+        catSpeed = 1.5f;
         cupboardSpeed = 0.2f;
-        stirSpeed = 0.1f;
-        tempSpeed = 0.1f;
+        stirSpeed = 15f;
+        tempSpeed = 20f;
         lives = 3;
     }
     
@@ -58,7 +58,14 @@ public class GameManager : MonoBehaviour
     {
         lives--;
     }
+
+    private void Update()
+    {
+        //print(1.0/Time.deltaTime);
+    }
 }
+
+
 
 public enum GameState {
     Menu,
