@@ -59,6 +59,7 @@ public class CupboardManager : MonoBehaviour
         }
         icon.GetComponent<SpriteRenderer>().color = Color.white;
         activatingCupboard = true;
+        speed = GameManager.Instance.GETCupboardSpeed();
     }
 
     IEnumerator CupboardActive()

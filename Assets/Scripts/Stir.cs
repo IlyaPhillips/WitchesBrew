@@ -30,6 +30,7 @@ public class Stir : MonoBehaviour
     private void StirPot(InputAction.CallbackContext obj)
     {
         changeStir = !changeStir;
+        deltaAngle = GameManager.Instance.GETStirSpeed();
     }
 
     private void OnEnable()

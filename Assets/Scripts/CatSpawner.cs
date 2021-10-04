@@ -32,7 +32,8 @@ public class CatSpawner : MonoBehaviour
         var index = PickShelf();
         SpawnCat(index);
         spawn = false;
-        
+        spawnTimer -= 0.01f;
+
     }
 
     private int PickShelf()

@@ -57,6 +57,14 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""84530867-13c3-4609-9560-dbbe2dc29780"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -156,6 +164,17 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""DeflectClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00ad650b-faa8-4f31-9bc7-4909d6526da3"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -738,6 +757,7 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
         m_Player_Stir = m_Player.FindAction("Stir", throwIfNotFound: true);
         m_Player_AdjustFire = m_Player.FindAction("AdjustFire", throwIfNotFound: true);
         m_Player_DeflectClick = m_Player.FindAction("DeflectClick", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -804,6 +824,7 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Stir;
     private readonly InputAction m_Player_AdjustFire;
     private readonly InputAction m_Player_DeflectClick;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @WitchesBrew m_Wrapper;
@@ -813,6 +834,7 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
         public InputAction @Stir => m_Wrapper.m_Player_Stir;
         public InputAction @AdjustFire => m_Wrapper.m_Player_AdjustFire;
         public InputAction @DeflectClick => m_Wrapper.m_Player_DeflectClick;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -837,6 +859,9 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
                 @DeflectClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDeflectClick;
                 @DeflectClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDeflectClick;
                 @DeflectClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDeflectClick;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -856,6 +881,9 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
                 @DeflectClick.started += instance.OnDeflectClick;
                 @DeflectClick.performed += instance.OnDeflectClick;
                 @DeflectClick.canceled += instance.OnDeflectClick;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -1017,6 +1045,7 @@ public class @WitchesBrew : IInputActionCollection, IDisposable
         void OnStir(InputAction.CallbackContext context);
         void OnAdjustFire(InputAction.CallbackContext context);
         void OnDeflectClick(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

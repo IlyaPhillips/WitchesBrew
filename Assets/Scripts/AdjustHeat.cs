@@ -31,6 +31,7 @@ public class AdjustHeat : MonoBehaviour
     private void Move(InputAction.CallbackContext ctx)
     {
         adjust = -ctx.ReadValue<float>() * tempDelta *2;
+        tempDelta = GameManager.Instance.GETTempSpeed();
     }
 
     private void OnEnable()
