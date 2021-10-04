@@ -1973,6 +1973,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magic
       objectReference: {fileID: 0}
+    - target: {fileID: 6570060284351099708, guid: 3c58de25cf85daa4188b88acab69d503, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: 3f7708f3ec377d0488a5b51d630cf809, type: 3}
+    - target: {fileID: 6570060284351099708, guid: 3c58de25cf85daa4188b88acab69d503, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6570060284351099709, guid: 3c58de25cf85daa4188b88acab69d503, type: 3}
       propertyPath: m_RootOrder
       value: 6
