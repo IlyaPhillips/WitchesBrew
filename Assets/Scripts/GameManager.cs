@@ -7,7 +7,12 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    [Header("References")]
     [SerializeField] private Transform cauldron;
+    [SerializeField] private Transform catSpawner;
+    [SerializeField] private Transform cupboards;
+    [SerializeField] private Transform temperature;
+    [SerializeField] private Transform stirring;
     private float catDelay; //low easier
     private float catSpeed; //low easier
     private float cupboardSpeed; //high easier
@@ -20,6 +25,8 @@ public class GameManager : MonoBehaviour
     private bool paused;
     private bool nextStage;
     private float timer;
+    
+    
 
     private void Awake()
     {
@@ -127,7 +134,7 @@ public class GameManager : MonoBehaviour
                 //pause
                 break;
             case GameState.Stage1:
-                //stir
+                stirring.GetComponent<Stir>().enabled = true;
                 if (nextStage)
                 {
                     nextStage = false;
@@ -138,6 +145,7 @@ public class GameManager : MonoBehaviour
             case GameState.Stage2:
                 //stir
                 //cupboards
+                cupboards.GetComponent<CupboardManager>().enabled = true;
                 if (nextStage)
                 {
                     nextStage = false;
@@ -149,6 +157,7 @@ public class GameManager : MonoBehaviour
                 //stir
                 //cupboards
                 //temperature
+                temperature.GetComponent<AdjustHeat>().enabled = true;
                 if (nextStage)
                 {
                     nextStage = false;
@@ -161,6 +170,7 @@ public class GameManager : MonoBehaviour
                 //cupboards
                 //temperature
                 //cats
+                catSpawner.GetComponent<CatSpawner>().enabled = true;
                 if (nextStage)
                 {
                     nextStage = false;

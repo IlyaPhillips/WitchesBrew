@@ -228,6 +228,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 233551603498303722, guid: 4e9aae8e1b26c444c9e5b350758a1ae8, type: 3}
   m_PrefabInstance: {fileID: 5798726878678037927}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &325227088 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6532847527861673626, guid: 17668a11b9d1ac643b2f01c06c731602, type: 3}
+  m_PrefabInstance: {fileID: 6532847527966710190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +346,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cauldron: {fileID: 1979078688}
+  catSpawner: {fileID: 325227088}
+  cupboards: {fileID: 311874485}
+  temperature: {fileID: 2118585615}
+  stirring: {fileID: 1676642115}
 --- !u!4 &576481465
 Transform:
   m_ObjectHideFlags: 0
@@ -757,6 +766,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d9ab68bc8b6914bbb4591c661d93e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1676642115 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 573189500802834184, guid: 58269a0f3dec2f84d880d27669af9ed2, type: 3}
+  m_PrefabInstance: {fileID: 1979078687}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1979078687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -834,6 +848,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 573189499103009020, guid: 58269a0f3dec2f84d880d27669af9ed2, type: 3}
   m_PrefabInstance: {fileID: 1979078687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2118585615 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5149567720397724101, guid: eb5d76f3cf521fc47b02c83ca9eaa851, type: 3}
+  m_PrefabInstance: {fileID: 157889015509876602}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &157889015509876602
 PrefabInstance:

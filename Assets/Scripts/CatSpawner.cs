@@ -25,8 +25,6 @@ public class CatSpawner : MonoBehaviour
 
     private void Update()
     {
-        
-        
         if (Random.value>spawnTimer) spawn = true;
         if (!spawn) return;
         var index = PickShelf();
