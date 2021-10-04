@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        catDelay = 0.9995f;
+        catDelay = 0.99f;
         catSpeed = 1.5f;
         cupboardSpeed = 0.2f;
         stirSpeed = 15f;
