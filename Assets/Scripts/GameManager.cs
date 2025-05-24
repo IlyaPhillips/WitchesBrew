@@ -3,9 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
+public enum GameState 
+{
+    Menu,
+    Pause,
+    Stage1,
+    Stage2,
+    Stage3,
+    Stage4,
+    Stage5,
+    Win,
+    Endless,
+    Lose
+
+}
 public class GameManager : MonoBehaviour
 {
+    public delegate void GameStateChangeHandler(GameState state);
+    public static event GameStateChangeHandler OnGameStateChange;
+    private HashSet<GameState> triggeredStates = new HashSet<GameState>();
+    private GameState currentState;
+    
     public static GameManager Instance;
     [Header("References")]
     [SerializeField] private Transform cauldron;
@@ -14,12 +34,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform temperature;
     [SerializeField] private Transform stirring;
     [SerializeField] private Transform witch;
-    private float catDelay; //low easier
-    private float catSpeed; //low easier
-    private float cupboardSpeed; //high easier
-    private float stirSpeed; //low easier
-    private float tempSpeed; //low easier
-    private int lives;
     [SerializeField]private GameState state;
     private WitchesBrew witchesBrew;
     private InputAction pause;
@@ -28,17 +42,19 @@ public class GameManager : MonoBehaviour
     private float timer;
     private GameState prevState;
     
+    [field: SerializeField, Header("Gameplay Parameters"), Tooltip("Low Easier"), Range(0,2)] public float CatDelay { get; private set; } = 0.99f; 
+    [field: SerializeField, Tooltip("Low Easier"), Range(0,2)] public float CatSpeed { get; private set; } = 1.5f; 
+    [field: SerializeField, Tooltip("High Easier"), Range(0,1)] public float CupboardSpeed { get; private set; } = 0.2f; 
+    [field: SerializeField, Tooltip("Low Easier"), Range(0,25)] public float StirSpeed { get; private set; } = 15f;
+    [field: SerializeField, Tooltip("Low Easier"),Range(0,40)] public float TempSpeed { get; private set; } = 20f; 
+    [field: SerializeField, Range(0,10)] public int Lives { get; private set; } = 5;
+
+    
 
     private void Awake()
     {
         Instance = this;
-        catDelay = 0.99f;
-        catSpeed = 1.5f;
-        cupboardSpeed = 0.2f;
-        stirSpeed = 15f;
-        tempSpeed = 20f;
-        lives = 5;
-        state = GameState.Stage1;
+        HandleStateChange(GameState.Stage1);
         witchesBrew = new WitchesBrew();
         witchesBrew.Player.Pause.performed += Pause;
         paused = false;
@@ -68,45 +84,14 @@ public class GameManager : MonoBehaviour
         pause.Disable();
     }
 
-    
-
     public Transform GETCauldron()
     {
         return cauldron;
     }
 
-    public float GETCatDelay()
-    {
-        return catDelay;
-    }
-    
-    public float GETCatSpeed()
-    {
-        return catSpeed;
-    }
-    
-    public float GETCupboardSpeed()
-    {
-        return cupboardSpeed;
-    }
-    
-    public float GETStirSpeed()
-    {
-        return stirSpeed;
-    }
-    public float GETTempSpeed()
-    {
-        return tempSpeed;
-    }
-
     public void LoseLife()
     {
-        lives--;
-    }
-
-    public int GETLives()
-    {
-        return lives;
+        Lives--;
     }
 
     public GameState GETGameState()
@@ -116,7 +101,23 @@ public class GameManager : MonoBehaviour
 
     public void SETGameState(GameState gameState)
     {
-        state = gameState;
+        if (state != gameState)
+        {
+            state = gameState;
+            if (!triggeredStates.Contains(gameState))
+            {
+                triggeredStates.Add(gameState);
+                OnGameStateChange?.Invoke(gameState);
+            }
+        }
+    }
+    
+    private void HandleStateChange(GameState newState)
+    {
+        if (state != newState)
+        {
+            SETGameState(newState);
+        }
     }
 
     private void Update()
@@ -124,12 +125,12 @@ public class GameManager : MonoBehaviour
         if (paused)
         {
             prevState = state;
-            state = GameState.Pause;
+            HandleStateChange(GameState.Pause);
         }
 
-        if (lives < 0)
+        if (Lives < 0)
         {
-            state = GameState.Lose;
+            HandleStateChange(GameState.Lose);
         }
 
         if (Time.time - timer > 30f)
@@ -162,7 +163,7 @@ public class GameManager : MonoBehaviour
                 if (nextStage)
                 {
                     nextStage = false;
-                    state = GameState.Stage2;
+                    HandleStateChange(GameState.Stage2);
                     timer = Time.time;
                 }
                 break;
@@ -174,7 +175,7 @@ public class GameManager : MonoBehaviour
                 if (nextStage)
                 {
                     nextStage = false;
-                    state = GameState.Stage3;
+                    HandleStateChange(GameState.Stage3);
                     timer = Time.time;
                 }
                 break;
@@ -186,7 +187,7 @@ public class GameManager : MonoBehaviour
                 if (nextStage)
                 {
                     nextStage = false;
-                    state = GameState.Stage4;
+                    HandleStateChange(GameState.Stage4);
                     timer = Time.time;
                 }
                 break;
@@ -199,7 +200,7 @@ public class GameManager : MonoBehaviour
                 if (nextStage)
                 {
                     nextStage = false;
-                    state = GameState.Stage5;
+                    HandleStateChange(GameState.Stage5);
                     timer = Time.time;
                 }
                 break;
@@ -213,7 +214,7 @@ public class GameManager : MonoBehaviour
                 if (nextStage)
                 {
                     nextStage = false;
-                    state = GameState.Win;
+                    HandleStateChange(GameState.Win);
                 }
                 break;
             case GameState.Win:
@@ -240,20 +241,4 @@ public class GameManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
-}
-
-
-
-public enum GameState {
-    Menu,
-    Pause,
-    Stage1,
-    Stage2,
-    Stage3,
-    Stage4,
-    Stage5,
-    Win,
-    Endless,
-    Lose
-
 }

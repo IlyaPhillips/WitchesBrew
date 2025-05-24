@@ -65,6 +65,9 @@ TagManager:
   - name: Cauldron
     uniqueID: 4199027887
     locked: 0
+  - name: Rocks
+    uniqueID: 2077984721
+    locked: 0
   - name: TempDial
     uniqueID: 1411367615
     locked: 0

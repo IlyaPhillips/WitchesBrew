@@ -8,16 +8,16 @@ public class LifeCounter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lives = GameManager.Instance.GETLives();
+        lives = GameManager.Instance.Lives;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.GETLives() < lives)
+        if (GameManager.Instance.Lives < lives)
         {
             Destroy(transform.GetChild(transform.childCount - 1).gameObject);
-            lives = GameManager.Instance.GETLives();
+            lives = GameManager.Instance.Lives;
         }
     }
 }

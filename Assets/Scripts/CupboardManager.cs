@@ -26,7 +26,7 @@ public class CupboardManager : MonoBehaviour
         }
         activeCupboard = 0;
         cupboardTimer = 10;
-        speed = GameManager.Instance.GETCupboardSpeed();
+        speed = GameManager.Instance.CupboardSpeed;
     }
 
     // Update is called once per frame
@@ -59,7 +59,7 @@ public class CupboardManager : MonoBehaviour
         }
         icon.GetComponent<SpriteRenderer>().color = Color.white;
         activatingCupboard = true;
-        speed = GameManager.Instance.GETCupboardSpeed();
+        speed = GameManager.Instance.CupboardSpeed;
     }
 
     IEnumerator CupboardActive()

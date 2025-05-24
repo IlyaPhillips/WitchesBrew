@@ -11,7 +11,7 @@ public class Cat : MonoBehaviour
     void Start()
     {
         start = transform.position;
-        speed = GameManager.Instance.GETCatSpeed();
+        speed = GameManager.Instance.CatSpeed;
     }
 
     // Update is called once per frame
