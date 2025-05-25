@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Paused)
+        if (Paused && State != GameState.Pause)
         {
             prevState = State;
             HandleStateChange(GameState.Pause);

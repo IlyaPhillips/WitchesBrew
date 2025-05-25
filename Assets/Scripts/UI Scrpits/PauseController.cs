@@ -63,8 +63,9 @@ public class PauseController : MonoBehaviour
 
     public void Resume()
     {
-        gameManager.Paused = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
+        gameManager.Paused = false;
+
     }
 }
