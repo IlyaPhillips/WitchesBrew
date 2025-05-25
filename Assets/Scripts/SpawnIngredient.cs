@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,6 @@ public class SpawnIngredient : MonoBehaviour
     private SpriteRenderer sr;
     private float speed;
     
-    // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -21,7 +21,6 @@ public class SpawnIngredient : MonoBehaviour
     {
         sr.sprite = open;
         StartCoroutine(Spawn());
-
     }
 
     IEnumerator Spawn()
@@ -30,10 +29,5 @@ public class SpawnIngredient : MonoBehaviour
         yield return new WaitForSeconds(speed);
         sr.sprite = closed;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

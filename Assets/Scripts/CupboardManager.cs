@@ -16,7 +16,7 @@ public class CupboardManager : MonoBehaviour
     private int cupboardTimer;
     private Transform icon;
     private float speed;
-    // Start is called before the first frame update
+    public event Action OnCupboardOpen;
     void Start()
     {
         cupboards = new List<Transform>();
@@ -52,6 +52,7 @@ public class CupboardManager : MonoBehaviour
         {
             var cupboardIngredient = cupboards[activeCupboard].GetChild(0).gameObject;
             cupboards[activeCupboard].GetComponent<SpawnIngredient>().OpenCupboard();
+            OnCupboardOpen?.Invoke();
         }
         else
         {

@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     [field: SerializeField, Tooltip("Low Easier"),Range(0,40)] public float TempSpeed { get; private set; } = 20f; 
     [field: SerializeField, Range(0,10)] public int Lives { get; private set; } = 5;
 
-    private bool _readyToStart;
+    private bool _readyToStart; public event Action OnLoseLife;
 
     private void Awake()
     {
@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
     public void LoseLife()
     {
         Lives--;
+        OnLoseLife?.Invoke();
     }
 
     public void SETGameState(GameState gameState)
