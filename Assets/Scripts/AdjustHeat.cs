@@ -16,7 +16,7 @@ public class AdjustHeat : MonoBehaviour
     // Update is called once per frame
     private void Awake()
     {
-        witchesBrew = new WitchesBrew();
+        witchesBrew = InputInstance.Instance;
         witchesBrew.Player.AdjustFire.performed += Move;
         witchesBrew.Player.AdjustFire.canceled += Move;
         temperature = 0.5f;

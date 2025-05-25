@@ -22,26 +22,28 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     public delegate void GameStateChangeHandler(GameState state);
-    public static event GameStateChangeHandler OnGameStateChange;
+    public event GameStateChangeHandler OnGameStateChange;
+    
     private HashSet<GameState> triggeredStates = new HashSet<GameState>();
     private GameState currentState;
     
     public static GameManager Instance;
     [Header("References")]
-    [SerializeField] private Transform cauldron;
     [SerializeField] private Transform catSpawner;
     [SerializeField] private Transform cupboards;
     [SerializeField] private Transform temperature;
     [SerializeField] private Transform stirring;
     [SerializeField] private Transform witch;
-    [SerializeField]private GameState state;
+    [field: SerializeField] public  GameState State { get; private set; }
     private WitchesBrew witchesBrew;
     private InputAction pause;
-    private bool paused;
+    [field: SerializeField, HideInInspector] public bool Paused { get; set; }
     private bool nextStage;
     private float timer;
     private GameState prevState;
     
+    
+    [field: SerializeField, Header("Cauldron Transform")] public Transform Cauldron { get; private set; }
     [field: SerializeField, Header("Gameplay Parameters"), Tooltip("Low Easier"), Range(0,2)] public float CatDelay { get; private set; } = 0.99f; 
     [field: SerializeField, Tooltip("Low Easier"), Range(0,2)] public float CatSpeed { get; private set; } = 1.5f; 
     [field: SerializeField, Tooltip("High Easier"), Range(0,1)] public float CupboardSpeed { get; private set; } = 0.2f; 
@@ -55,9 +57,8 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         HandleStateChange(GameState.Stage1);
-        witchesBrew = new WitchesBrew();
-        witchesBrew.Player.Pause.performed += Pause;
-        paused = false;
+        witchesBrew = InputInstance.Instance;
+        Paused = false;
         nextStage = false;
         timer = 0f;
         stirring.GetComponent<Stir>().enabled = false;
@@ -68,44 +69,35 @@ public class GameManager : MonoBehaviour
         prevState = GameState.Pause;
     }
 
-    private void Pause(InputAction.CallbackContext obj)
-    {
-        paused = !paused;
-    }
-
-    private void OnEnable()
-    {
-        pause = witchesBrew.Player.Pause;
-        pause.Enable();
-    }
-
-    private void OnDisable()
-    {
-        pause.Disable();
-    }
-
-    public Transform GETCauldron()
-    {
-        return cauldron;
-    }
+    // private void Pause(InputAction.CallbackContext obj)
+    //  {
+    //      paused = !paused;
+    //  }
+    //
+    // private void OnEnable()
+    // {
+    //     pause = witchesBrew.Player.Pause;
+    //     pause.Enable();
+    // }
+    //
+    // private void OnDisable()
+    // {
+    //     pause.Disable();
+    // }
 
     public void LoseLife()
     {
         Lives--;
     }
 
-    public GameState GETGameState()
-    {
-        return state;
-    }
-
     public void SETGameState(GameState gameState)
     {
-        if (state != gameState)
+        if (State != gameState)
         {
-            state = gameState;
+            State = gameState;
             if (!triggeredStates.Contains(gameState))
             {
+                if (gameState == GameState.Menu || gameState == GameState.Pause) return;
                 triggeredStates.Add(gameState);
                 OnGameStateChange?.Invoke(gameState);
             }
@@ -114,7 +106,7 @@ public class GameManager : MonoBehaviour
     
     private void HandleStateChange(GameState newState)
     {
-        if (state != newState)
+        if (State != newState)
         {
             SETGameState(newState);
         }
@@ -122,9 +114,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (paused)
+        if (Paused)
         {
-            prevState = state;
+            prevState = State;
             HandleStateChange(GameState.Pause);
         }
 
@@ -139,22 +131,18 @@ public class GameManager : MonoBehaviour
         }
 
 
-        switch (state)
+        switch (State)
         {
             case GameState.Menu:
                 // menu
                 break;
             case GameState.Pause:
-                //pause
-                Time.timeScale = 0;
-                witch.GetComponent<WitchCupboardChoice>().enabled = false;
-                if (!paused)
+                //witch.GetComponent<WitchCupboardChoice>().enabled = false;
+                if (!Paused)
                 {
-                    Time.timeScale = 1;
-                    witch.GetComponent<WitchCupboardChoice>().enabled = true;
-                    state = prevState;
+                   // witch.GetComponent<WitchCupboardChoice>().enabled = true;
+                    HandleStateChange(prevState); 
                 }
-
                 break;
             case GameState.Stage1:
                 Time.timeScale = 1;
@@ -225,7 +213,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Lose:
                 Time.timeScale = 0;
-                paused = false;
+                Paused = false;
                 nextStage = false;
                 timer = 0f;
                 stirring.GetComponent<Stir>().enabled = false;

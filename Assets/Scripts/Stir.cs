@@ -15,7 +15,7 @@ public class Stir : MonoBehaviour
 
     private void Awake()
     {
-        witchesBrew = new WitchesBrew();
+        witchesBrew = InputInstance.Instance;
         witchesBrew.Player.Stir.performed += StirPot;
         //pivot = transform.parent;
         angle = 0;
@@ -37,7 +37,6 @@ public class Stir : MonoBehaviour
     {
         stir = witchesBrew.Player.Stir;
         stir.Enable();
-        
     }
 
     private void OnDisable()
