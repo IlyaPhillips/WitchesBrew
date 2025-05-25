@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform temperature;
     [SerializeField] private Transform stirring;
     [SerializeField] private Transform witch;
+    
     [field: SerializeField] public  GameState State { get; private set; }
     private WitchesBrew witchesBrew;
     private InputAction pause;
@@ -41,17 +42,17 @@ public class GameManager : MonoBehaviour
     private bool nextStage;
     private float timer;
     private GameState prevState;
-    
-    
-    [field: SerializeField, Header("Cauldron Transform")] public Transform Cauldron { get; private set; }
-    [field: SerializeField, Header("Gameplay Parameters"), Tooltip("Low Easier"), Range(0,2)] public float CatDelay { get; private set; } = 0.99f; 
+
+    [Header("Config"),SerializeField] private float startDelay = 3f ;
+    [field: SerializeField ] public Transform Cauldron { get; private set; }
+    [field: SerializeField, Tooltip("Low Easier"), Range(0,2)] public float CatDelay { get; private set; } = 0.99f; 
     [field: SerializeField, Tooltip("Low Easier"), Range(0,2)] public float CatSpeed { get; private set; } = 1.5f; 
     [field: SerializeField, Tooltip("High Easier"), Range(0,1)] public float CupboardSpeed { get; private set; } = 0.2f; 
     [field: SerializeField, Tooltip("Low Easier"), Range(0,25)] public float StirSpeed { get; private set; } = 15f;
     [field: SerializeField, Tooltip("Low Easier"),Range(0,40)] public float TempSpeed { get; private set; } = 20f; 
     [field: SerializeField, Range(0,10)] public int Lives { get; private set; } = 5;
 
-    
+    private bool _readyToStart;
 
     private void Awake()
     {
@@ -68,22 +69,6 @@ public class GameManager : MonoBehaviour
         witch.GetComponent<WitchCupboardChoice>().enabled = false;
         prevState = GameState.Pause;
     }
-
-    // private void Pause(InputAction.CallbackContext obj)
-    //  {
-    //      paused = !paused;
-    //  }
-    //
-    // private void OnEnable()
-    // {
-    //     pause = witchesBrew.Player.Pause;
-    //     pause.Enable();
-    // }
-    //
-    // private void OnDisable()
-    // {
-    //     pause.Disable();
-    // }
 
     public void LoseLife()
     {
@@ -112,6 +97,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(startDelay);
+        _readyToStart = true;
+    }
+
     private void Update()
     {
         if (Paused && State != GameState.Pause)
@@ -137,17 +128,17 @@ public class GameManager : MonoBehaviour
                 // menu
                 break;
             case GameState.Pause:
-                //witch.GetComponent<WitchCupboardChoice>().enabled = false;
                 if (!Paused)
                 {
-                   // witch.GetComponent<WitchCupboardChoice>().enabled = true;
                     HandleStateChange(prevState); 
                 }
                 break;
             case GameState.Stage1:
                 Time.timeScale = 1;
-                cupboards.GetComponent<CupboardManager>().enabled = true;
                 witch.GetComponent<WitchCupboardChoice>().enabled = true;
+                StartCoroutine(StartDelay());
+                if (!_readyToStart) return;
+                cupboards.GetComponent<CupboardManager>().enabled = true;
                 if (nextStage)
                 {
                     nextStage = false;
@@ -158,7 +149,6 @@ public class GameManager : MonoBehaviour
             case GameState.Stage2:
                 //stir
                 //cupboards
-                
                 stirring.GetComponent<Stir>().enabled = true;
                 if (nextStage)
                 {

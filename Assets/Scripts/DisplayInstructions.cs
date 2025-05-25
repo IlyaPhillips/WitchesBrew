@@ -13,12 +13,21 @@ public class DisplayInstructions : MonoBehaviour
     [SerializeField] private TextMeshProUGUI displayText;
     [SerializeField] private Image background;
     
-    [SerializeField, Header("Config")] private float displayTime = 3.5f;
-    [SerializeField, Header("Config")] private float fadeInTime = 1f;
+    [SerializeField, Header("Config")] 
+    private float displayTime = 3.5f;
+    [SerializeField] private float fadeInTime = 1f;
+    [SerializeField] private float backgroundMaxAlpha = 0.8f;
 
     
     private int currentInstructionIndex = 0;
-    
+
+    private void Awake()
+    {
+        displayText.alpha = 0f;
+        background.color = new Color(background.color.r, background.color.g, background.color.b, 0f);
+        DisplayEachInstruction(GameState.Stage1);
+    }
+
     private void OnEnable()
     {
         gameManager.OnGameStateChange += DisplayEachInstruction;
@@ -31,56 +40,60 @@ public class DisplayInstructions : MonoBehaviour
 
     private void DisplayEachInstruction(GameState state)
     {
-        StartCoroutine(FadeInText());
+        StartCoroutine(FadeSequence());
         displayText.text = instructions[currentInstructionIndex];
-        currentInstructionIndex++;       
-    }
+        currentInstructionIndex++; 
     
-    private IEnumerator FadeInText()
-    {
-        Color currentColor = background.color;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < fadeInTime)
-        {
-            elapsedTime += Time.deltaTime;
-            currentColor.a = Mathf.Lerp(0f, 0.8f, elapsedTime / fadeInTime);
-            background.color = currentColor;
-            yield return null;
-        }
-        currentColor.a = 0.8f;
-        background.color = currentColor;
-        if (currentColor.a >= 0.8f)
-        {
-            displayText.gameObject.SetActive(true);
-            StartCoroutine(WaitToHide());
-        }
     }
-    
-    private IEnumerator FadeOutText()
+        
+    private IEnumerator FadeSequence()
     {
-        Color currentColor = background.color;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < fadeInTime)
-        {
-            elapsedTime += Time.deltaTime;
-            currentColor.a = Mathf.Lerp(0.8f, 0f, elapsedTime / fadeInTime);
-            background.color = currentColor;
-            yield return null;
-        }
-        currentColor.a = 0f;
-        background.color = currentColor;
-        if (currentColor.a <= 0f)
-        {
-            displayText.gameObject.SetActive(false);
-        }
-    }
-    
-
-    IEnumerator WaitToHide()
-    {
+        yield return StartCoroutine(FadeText(0f, 1f, 0f, backgroundMaxAlpha));
         yield return new WaitForSeconds(displayTime);
-        StartCoroutine(FadeOutText());
+        yield return StartCoroutine(FadeText(1f, 0f, backgroundMaxAlpha, 0f));
     }
+
+    
+    private IEnumerator FadeText(float startTextAlpha, float endTextAlpha, 
+        float startBackgroundAlpha, float endBackgroundAlpha)
+    {
+        displayText.gameObject.SetActive(true);
+        float elapsedTime = 0f;
+        
+        Color textColor = displayText.color;
+        Color backgroundColor = background.color;
+        textColor.a = startTextAlpha;
+        backgroundColor.a = startBackgroundAlpha;
+        
+        displayText.color = textColor;
+        background.color = backgroundColor;
+
+        while (elapsedTime < fadeInTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float progress = elapsedTime / fadeInTime;
+            
+            textColor.a = Mathf.Lerp(startTextAlpha, endTextAlpha, progress);
+            backgroundColor.a = Mathf.Lerp(startBackgroundAlpha, endBackgroundAlpha, progress);
+            
+            displayText.color = textColor;
+            background.color = backgroundColor;
+            yield return null;
+        }
+        
+        textColor.a = endTextAlpha;
+        backgroundColor.a = endBackgroundAlpha;
+        displayText.color = textColor;
+        background.color = backgroundColor;
+
+       
+    }
+
+    
+
+    // IEnumerator WaitToHide()
+    // {
+    //     yield return new WaitForSeconds(displayTime);
+    //     StartCoroutine(FadeOutText());
+    // }
 }
