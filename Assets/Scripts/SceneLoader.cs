@@ -10,6 +10,7 @@ public class SceneLoader : MonoBehaviour
     
     public void NextLevel()
     {
+        if (Time.timeScale <= 0f) Time.timeScale = 1f;
         StartCoroutine(Delay());
     }
 

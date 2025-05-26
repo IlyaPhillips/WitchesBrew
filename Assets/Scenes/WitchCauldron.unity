@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 305371459}
   - component: {fileID: 305371463}
   - component: {fileID: 305371464}
+  - component: {fileID: 305371465}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -553,6 +554,19 @@ MonoBehaviour:
   displayTime: 3.5
   fadeInTime: 0.6
   backgroundMaxAlpha: 0.8
+--- !u!114 &305371465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305371458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f275dd729371ed249bb541a40e609323, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.2
 --- !u!4 &311874485 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 233551603498303722, guid: 4e9aae8e1b26c444c9e5b350758a1ae8, type: 3}
@@ -5988,7 +6002,6 @@ GameObject:
   - component: {fileID: 861744145}
   - component: {fileID: 861744144}
   - component: {fileID: 861744143}
-  - component: {fileID: 861744142}
   m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
@@ -6016,18 +6029,6 @@ RectTransform:
   m_AnchoredPosition: {x: 250, y: -235}
   m_SizeDelta: {x: 500, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &861744142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861744140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f275dd729371ed249bb541a40e609323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &861744143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6072,7 +6073,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 861744142}
+      - m_Target: {fileID: 305371465}
         m_TargetAssemblyTypeName: ReloadScene, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
@@ -7502,6 +7503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Menu
+  delay: 0.25
 --- !u!114 &2046234155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7697,6 +7699,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2024795465}
     m_Modifications:
+    - target: {fileID: 2256269351941852034, guid: eb5d76f3cf521fc47b02c83ca9eaa851, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c073d46c9df1059478a1b8d0d17a2651, type: 3}
     - target: {fileID: 3572081960193554833, guid: eb5d76f3cf521fc47b02c83ca9eaa851, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -7741,9 +7747,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3727052516273100502, guid: eb5d76f3cf521fc47b02c83ca9eaa851, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727052516273100502, guid: eb5d76f3cf521fc47b02c83ca9eaa851, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727052516273100502, guid: eb5d76f3cf521fc47b02c83ca9eaa851, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.18
+      objectReference: {fileID: 0}
     - target: {fileID: 4102164431463131939, guid: eb5d76f3cf521fc47b02c83ca9eaa851, type: 3}
       propertyPath: m_Name
       value: Temperature Gauge
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634307464008439831, guid: eb5d76f3cf521fc47b02c83ca9eaa851, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb5d76f3cf521fc47b02c83ca9eaa851, type: 3}
