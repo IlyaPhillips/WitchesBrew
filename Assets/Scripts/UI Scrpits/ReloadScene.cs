@@ -10,7 +10,7 @@ public class ReloadScene : MonoBehaviour
     {
         Time.timeScale = 1;
         GameManager.Instance.SETGameState(GameState.Stage1);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("WitchCauldron");
     }
 
     // Update is called once per frame

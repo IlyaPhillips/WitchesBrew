@@ -54,7 +54,13 @@ TagManager:
     uniqueID: 2329057121
     locked: 0
   - name: Witch
-    uniqueID: 1399306771
+    uniqueID: 2527804283
+    locked: 0
+  - name: CauldronLip
+    uniqueID: 3857933535
+    locked: 0
+  - name: IngredientSwitch
+    uniqueID: 2347594423
     locked: 0
   - name: Cat
     uniqueID: 1632941393

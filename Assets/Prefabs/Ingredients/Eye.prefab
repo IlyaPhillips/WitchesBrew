@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0afe4571791ac45870dd151df09c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  switchToLayer: IngredientSwitch
   shelf: 0
 --- !u!50 &878209313322889540
 Rigidbody2D:
@@ -106,7 +107,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1965910175
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -3646462049913933398, guid: 25050a7ea2e2d9045be6ae561caa35c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
