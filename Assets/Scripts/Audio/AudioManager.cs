@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private GameManager gameManger;
     [SerializeField] private AudioSource generalSource;
 
-    [Header("Potion Lives")] [SerializeField] private AudioClip potionLives;
-    [Header("Cupboard Item")] [SerializeField] private AudioClip cupboardItem;
+    [Header("Potion Lives"), SerializeField] private AudioClip potionLives;
+    [Header("Cupboard Item"), SerializeField] private AudioClip cupboardItem;
+ 
 
     private void OnEnable()
     {
@@ -24,6 +26,7 @@ public class AudioManager : MonoBehaviour
         gameManger.OnLoseLife -= FeedPotionClip;
         cupboardManager.OnCupboardOpen -= FeedOpenCLip;
     }
+    
     
     private void FeedPotionClip()
     {

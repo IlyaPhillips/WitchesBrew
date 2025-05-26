@@ -30,11 +30,11 @@ public class GameManager : MonoBehaviour
     
     public static GameManager Instance;
     [Header("References")]
-    [SerializeField] private Transform catSpawner;
-    [SerializeField] private Transform cupboards;
-    [SerializeField] private Transform temperature;
-    [SerializeField] private Transform stirring;
-    [SerializeField] private Transform witch;
+    [SerializeField] private CatSpawner catSpawner;
+    [SerializeField] private CupboardManager cupboards;
+    [SerializeField] private AdjustHeat temperature;
+    [SerializeField] private Stir stirring;
+    [SerializeField] private WitchCupboardChoice witch;
     
     [field: SerializeField] public  GameState State { get; private set; }
     private WitchesBrew witchesBrew;
@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
     [field: SerializeField, Range(0,10)] public int Lives { get; private set; } = 5;
 
     private bool _readyToStart; public event Action OnLoseLife;
+
+    
     
     IEnumerator StartDelay()
     {
@@ -73,15 +75,19 @@ public class GameManager : MonoBehaviour
         prevState = GameState.Start;
     }
     
-    private void DisableAllComponents()
+    private void StartGame()
     {
-        stirring.GetComponent<Stir>().enabled = false;
-        cupboards.GetComponent<CupboardManager>().enabled = false;
-        temperature.GetComponent<AdjustHeat>().enabled = false;
-        catSpawner.GetComponent<CatSpawner>().enabled = false;
-        witch.GetComponent<WitchCupboardChoice>().enabled = false;
+        HandleStateChange(GameState.Stage1);
     }
-
+    
+    private void DisableAllComponents()
+    { 
+        stirring.enabled = false;
+        cupboards.enabled = false;
+        temperature.enabled = false;
+        catSpawner.enabled = false;
+        witch.enabled = false;
+    }
 
     public void LoseLife()
     {
@@ -133,6 +139,7 @@ public class GameManager : MonoBehaviour
         switch (State)
         {
             case GameState.Start:
+                StartGame();
                 break;
             case GameState.Menu:
                 break;
@@ -144,10 +151,10 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Stage1:
                 Time.timeScale = 1;
-                witch.GetComponent<WitchCupboardChoice>().enabled = true;
+                witch.enabled = true;
                 StartCoroutine(StartDelay());
                 if (!_readyToStart) return;
-                cupboards.GetComponent<CupboardManager>().enabled = true;
+                cupboards.enabled = true;
                 if (nextStage)
                 {
                     nextStage = false;
@@ -158,7 +165,7 @@ public class GameManager : MonoBehaviour
             case GameState.Stage2:
                 //stir
                 //cupboards
-                stirring.GetComponent<Stir>().enabled = true;
+                stirring.enabled = true;
                 if (nextStage)
                 {
                     nextStage = false;
@@ -170,7 +177,7 @@ public class GameManager : MonoBehaviour
                 //stir
                 //cupboards
                 //temperature
-                temperature.GetComponent<AdjustHeat>().enabled = true;
+                temperature.enabled = true;
                 if (nextStage)
                 {
                     nextStage = false;
@@ -183,7 +190,7 @@ public class GameManager : MonoBehaviour
                 //cupboards
                 //temperature
                 //cats
-                catSpawner.GetComponent<CatSpawner>().enabled = true;
+                catSpawner.enabled = true;
                 if (nextStage)
                 {
                     nextStage = false;
@@ -215,11 +222,7 @@ public class GameManager : MonoBehaviour
                 Paused = false;
                 nextStage = false;
                 timer = 0f;
-                stirring.GetComponent<Stir>().enabled = false;
-                cupboards.GetComponent<CupboardManager>().enabled = false;
-                temperature.GetComponent<AdjustHeat>().enabled = false;
-                catSpawner.GetComponent<CatSpawner>().enabled = false;
-                witch.GetComponent<WitchCupboardChoice>().enabled = false;
+                DisableAllComponents();
                 prevState = GameState.Pause;
                 //lose 3 lives
                 //restart from last stage
