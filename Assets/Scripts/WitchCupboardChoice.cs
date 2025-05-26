@@ -56,7 +56,6 @@ public class WitchCupboardChoice : MonoBehaviour
         {
             witchMovement.Disable();
         }
-
     }
     
     private void OnDestroy()

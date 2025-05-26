@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class InputInstance : MonoBehaviour
 {
-    private static WitchesBrew instance;
-    
+    private static WitchesBrew _instance;
+
     public static WitchesBrew Instance
     {
         get
         {
-            if (instance == null)
+            if (_instance == null)
             {
-                instance = new WitchesBrew();
+                try
+                {
+                    _instance = new WitchesBrew();
+                    _instance.Enable();
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogError($"Failed to initialize input system: {e.Message}");
+                }
             }
-            return instance;
+
+            return _instance;
         }
     }
-
 }

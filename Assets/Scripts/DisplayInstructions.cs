@@ -25,7 +25,6 @@ public class DisplayInstructions : MonoBehaviour
     {
         displayText.alpha = 0f;
         background.color = new Color(background.color.r, background.color.g, background.color.b, 0f);
-        DisplayEachInstruction(GameState.Stage1);
     }
 
     private void OnEnable()

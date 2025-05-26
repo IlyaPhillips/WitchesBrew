@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 
 public enum GameState 
 {
+    Start,
     Menu,
     Pause,
     Stage1,
@@ -53,22 +54,34 @@ public class GameManager : MonoBehaviour
     [field: SerializeField, Range(0,10)] public int Lives { get; private set; } = 5;
 
     private bool _readyToStart; public event Action OnLoseLife;
+    
+    IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(startDelay);
+        _readyToStart = true;
+    }
 
     private void Awake()
     {
         Instance = this;
-        HandleStateChange(GameState.Stage1);
+        HandleStateChange(GameState.Start);
         witchesBrew = InputInstance.Instance;
         Paused = false;
         nextStage = false;
         timer = 0f;
+        DisableAllComponents();
+        prevState = GameState.Start;
+    }
+    
+    private void DisableAllComponents()
+    {
         stirring.GetComponent<Stir>().enabled = false;
         cupboards.GetComponent<CupboardManager>().enabled = false;
         temperature.GetComponent<AdjustHeat>().enabled = false;
         catSpawner.GetComponent<CatSpawner>().enabled = false;
         witch.GetComponent<WitchCupboardChoice>().enabled = false;
-        prevState = GameState.Pause;
     }
+
 
     public void LoseLife()
     {
@@ -98,12 +111,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator StartDelay()
-    {
-        yield return new WaitForSeconds(startDelay);
-        _readyToStart = true;
-    }
-
     private void Update()
     {
         if (Paused && State != GameState.Pause)
@@ -125,8 +132,9 @@ public class GameManager : MonoBehaviour
 
         switch (State)
         {
+            case GameState.Start:
+                break;
             case GameState.Menu:
-                // menu
                 break;
             case GameState.Pause:
                 if (!Paused)
